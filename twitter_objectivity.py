@@ -48,7 +48,6 @@ common_words = stopwords.words('english')
 
 @st.cache
 def clean_tweet(text):
-
     tweet = text
     to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
 
@@ -80,7 +79,7 @@ def objectivity_scores(tweet):
 @st.cache(show_spinner=False, allow_output_mutation=True)
 def get_tweets_data():
 
-    query = ty.Cursor(api.user_timeline, screen_name=twitter_handle, tweet_mode='extended', lang='en').items(500)
+    query = ty.Cursor(api.user_timeline, screen_name=twitter_handle, tweet_mode='extended').items(500)
 
     tweet_text, date_posted = [], []
     for tweet in query:
@@ -157,3 +156,6 @@ st.write("The values under the 'Average Objectivity Scores' (AOS) column are tak
          from the average of the TextBlob and Vader columns. \
          \n The data from AOS is used for the above chart, and calculating \
           the 'Mean Objectivity Score'.")
+
+
+
