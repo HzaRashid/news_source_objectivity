@@ -1,3 +1,4 @@
+import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -6,7 +7,6 @@ import numpy as np
 import pandas as pd
 import tweepy as ty
 import streamlit as st
-import re
 from plotly import graph_objs as go
 
 
