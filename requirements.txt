@@ -1,0 +1,8 @@
+re
+pandas
+tweepy
+streamlit
+nltk
+numpy
+plotly
+textblob
