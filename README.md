@@ -14,7 +14,7 @@
 
 - To access tweets in real time, a [Twitter Developer](https://developer.twitter.com/en) account needs be made with an application for 'Elevated Access'. After which, four unique authorization credentials will be given; 'API Key', 'API Key Secret', 'Access Token', and 'Access Token Secret'. Authorizing these credentials using the tweepy library will give access to the Twitter API, which gives access to tweets.
 
-- To measure the objectivity of a tweet, I used the [TextBlob and Vader libraries](https://towardsdatascience.com/sentiment-analysis-vader-or-textblob-ff25514ac540), which process textual data. 
+##### To measure the objectivity of a tweet, I used the [TextBlob and Vader libraries](https://towardsdatascience.com/sentiment-analysis-vader-or-textblob-ff25514ac540), which process textual data. 
 
 - TextBlob provides a measure of polarity (feeling, not as relevant to this project), and more importantly, subjectivity. 
 - TextBlob's subjectivity score ranges from 0 to 1, where 0 indicates the text is completely objective and 1 indicates the opposite. Subtracting this value from 1 will (roughly) yield TextBlob's measure of objectivity (i.e., objectivity score = 1 - subjectivity score), where now a score of 0 indicates the tweet is completely subjective, and a score of 1 indicates a completely objective tweet. This is relevant to how Vader performs sentiment analysis of a text.
