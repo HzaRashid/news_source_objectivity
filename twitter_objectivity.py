@@ -1,4 +1,5 @@
 import nltk
+import nltk.downloader
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob as TB, Word
@@ -39,13 +40,12 @@ st.write('The Objectivity Score ranges from 0% to 100%, \
          from Subjective to Objective, respectively.')
 twitter_handle = news_sources.get(user_choice_source)
 
-
+nltk.downloader.download('vader_lexicon')
 
 @st.cache
 def clean_tweet(text):
     nltk.download('wordnet')
     nltk.download('stopwords')
-    nltk.downloader.download('vader_lexicon')
 
     common_words = stopwords.words('english')
 
