@@ -1,7 +1,6 @@
 import nltk
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import nltk.downloader
 from textblob import TextBlob as TB, Word
 import numpy as np
 import pandas as pd
@@ -10,6 +9,7 @@ import streamlit as st
 import re
 from plotly import graph_objs as go
 
+nltk.downloader.download('vader_lexicon')
 twitter_info = pd.read_csv('keys_tokens.csv')
 
 consumer_key = twitter_info['API Key'][0]
@@ -42,11 +42,10 @@ twitter_handle = news_sources.get(user_choice_source)
 
 
 
-@st.cache
+@st.cache(show_spinner=False)
 def clean_tweet(text):
     nltk.download('wordnet')
     nltk.download('stopwords')
-    nltk.downloader.download('vader_lexicon')
 
     common_words = stopwords.words('english')
 
@@ -122,7 +121,7 @@ load_data_state.text('')
 
 st.subheader('Tweet Data of ' + user_choice_source)
 
-
+@st.cache(show_spinner=False)
 def plot_objectivity_scores():
     fig = go.Figure([
         go.Scatter(
