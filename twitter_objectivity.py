@@ -3,6 +3,7 @@ import pandas as pd
 import tweepy as ty
 import streamlit as st
 import nltk
+import numpy as np
 from nltk.corpus import stopwords
 from textblob import TextBlob as TB, Word
 from plotly import graph_objs as go
@@ -30,6 +31,7 @@ news_sources = {'New York Times': 'nytimes',
                 'Al Jazeera': 'AJEnglish'}
 
 user_choice_source = st.selectbox('Select News Source', news_sources.keys())
+st.write('Objectivity Score ranges from 0% to 100%, from completely subjective to completely objective, respectively.')
 twitter_handle = news_sources.get(user_choice_source)
 
 
@@ -57,7 +59,7 @@ def clean_tweet(text):
 
 sia = SentimentIntensityAnalyzer()
 
-
+@st.cache(show_spinner=False)
 def objectivity_scores(tweet):
 
     textblob_objectivity = 1 - TB(tweet).sentiment.subjectivity
@@ -67,10 +69,10 @@ def objectivity_scores(tweet):
     return textblob_objectivity, vader_objectivity, avg_objectivity
 
 
-@st.cache(show_spinner=False)
+@st.cache(show_spinner=False, allow_output_mutation=True)
 def get_tweets_data():
 
-    query = ty.Cursor(api.user_timeline, screen_name=twitter_handle, tweet_mode='extended', lang='en').items(50)
+    query = ty.Cursor(api.user_timeline, screen_name=twitter_handle, tweet_mode='extended', lang='en').items(500)
 
     tweet_text, date_posted = [], []
     for tweet in query:
@@ -103,41 +105,27 @@ def get_tweets_data():
 
     return tweets
 
-
+load_data_state = st.text('loading data...')
 news_source_tweets = get_tweets_data()
-st.subheader('Tweet Data of New York Times')
-print(news_source_tweets.index)
-st.write(news_source_tweets.tail())
+load_data_state.text('')
 
+st.subheader('Tweet Data of ' + user_choice_source)
+# print(news_source_tweets.index)
+# st.write(news_source_tweets.tail())
 
+@st.cache(show_spinner=False)
 def plot_objectivity_scores():
     fig = go.Figure([
         go.Scatter(
-
             x=news_source_tweets.index,
-            y=news_source_tweets['TextBlob Objectivity Scores'],
-            name='TextBlob Objectivity Score',
+            y=news_source_tweets['Average Objectivity Scores'].rolling(100, min_periods=5).mean()*100,
+            name='Objectivity Scores (Taken from Average)',
             mode='lines',
             line=dict(color='#088F8F')
-        ),
-        go.Scatter(
-            x=news_source_tweets.index,
-            y=news_source_tweets['Vader Objectivity Scores'],
-            name='Vader Objectivity Scores',
-            mode='lines',
-            line=dict(color='#F08080')
-        ),
-        go.Scatter(
-            x=news_source_tweets.index,
-            y=news_source_tweets['Average Objectivity Scores'],
-            name='Average Objectivity Scores',
-            mode='lines',
-            line=dict(color='black')
         )
-
     ])
     fig.layout.update(
-        title_text='Actual and Predicted Prices ($USD)',
+        title_text='100 Tweets MA of Objectivity',
         xaxis_title='Date',
         yaxis_title='Objectivity Score',
         xaxis_rangeslider_visible=True
@@ -145,5 +133,46 @@ def plot_objectivity_scores():
     return fig
 
 
+# def plot_vdr_objectivity_scores():
+#     fig = go.Figure([
+#         go.Scatter(
+#             x=news_source_tweets.index,
+#             y=news_source_tweets['Vader Objectivity Scores'],
+#             mode='lines',
+#             line=dict(color='#F08080'))
+#     ])
+#     fig.layout.update(
+#         title_text='Vader Objectivity Scores',
+#         xaxis_title='Date',
+#         yaxis_title='Objectivity Score',
+#         xaxis_rangeslider_visible=True
+#     )
+#     return fig
+
 
 st.plotly_chart(plot_objectivity_scores())
+avg_objectivity_scores = list(news_source_tweets['Average Objectivity Scores'])
+avg_objectivity = np.mean(avg_objectivity_scores)
+st.subheader('Mean Objectivity Score: ' + str(round(avg_objectivity, 2)*100) + '%')
+st.subheader('Raw Data')
+st.write(news_source_tweets)
+st.write("The values under the 'Average Objectivity Scores' column are taken \
+         from the average of the TextBlob and Vader Objectivity Scores. \
+         \n The data in this column is used for the above chart, and calculating \
+          the 'Mean Objectivity Score'.")
+# st.plotly_chart(plot_vdr_objectivity_scores())
+# ),
+# go.Scatter(
+#     x=news_source_tweets.index,
+#     y=news_source_tweets['Vader Objectivity Scores'],
+#     name='Vader Objectivity Scores',
+#     mode='lines',
+#     line=dict(color='#F08080')
+# ),
+# go.Scatter(
+#     x=news_source_tweets.index,
+#     y=news_source_tweets['Average Objectivity Scores'],
+#     name='Average Objectivity Scores',
+#     mode='lines',
+#     line=dict(color='black')
+# )
