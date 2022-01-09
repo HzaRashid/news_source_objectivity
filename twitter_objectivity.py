@@ -32,7 +32,8 @@ news_sources = {'Reuters': 'Reuters',
                 'NBC': 'NBCNews',
                 'Fox News': 'FoxNews',
                 'BBC': 'BBC',
-                'Al Jazeera': 'AJEnglish'}
+                'Al Jazeera (English)'
+                '': 'AJEnglish'}
 
 user_choice_source = st.selectbox('Select News Source', news_sources.keys())
 st.write('The Objectivity Score ranges from 0% to 100%, \
@@ -110,15 +111,15 @@ def get_tweets_data():
 
     return tweets
 
+
+# load tweet data of news source
 load_data_state = st.text('loading data...')
 news_source_tweets = get_tweets_data()
 load_data_state.text('')
 
 st.subheader('Tweet Data of ' + user_choice_source)
-# print(news_source_tweets.index)
-# st.write(news_source_tweets.tail())
 
-@st.cache(show_spinner=False)
+
 def plot_objectivity_scores():
     fig = go.Figure([
         go.Scatter(
@@ -138,46 +139,19 @@ def plot_objectivity_scores():
     return fig
 
 
-# def plot_vdr_objectivity_scores():
-#     fig = go.Figure([
-#         go.Scatter(
-#             x=news_source_tweets.index,
-#             y=news_source_tweets['Vader Objectivity Scores'],
-#             mode='lines',
-#             line=dict(color='#F08080'))
-#     ])
-#     fig.layout.update(
-#         title_text='Vader Objectivity Scores',
-#         xaxis_title='Date',
-#         yaxis_title='Objectivity Score',
-#         xaxis_rangeslider_visible=True
-#     )
-#     return fig
-
-
+# show plot of objectivity scores
 st.plotly_chart(plot_objectivity_scores())
-avg_objectivity_scores = list(news_source_tweets['Average Objectivity Scores'])
-avg_objectivity = np.mean(avg_objectivity_scores)
-st.subheader('Mean Objectivity Score: ' + str(round(avg_objectivity, 2)*100) + '%')
+
+# calculate average/mean objectivity score
+mean_objectivity_scores = list(news_source_tweets['Average Objectivity Scores'])
+mean_objectivity = np.mean(mean_objectivity_scores)
+
+st.subheader('Mean Objectivity Score: ' + str(mean_objectivity*100)[:5] + '%')
+
+# show raw data (DataFrame of tweets & objectivity scores)
 st.subheader('Raw Data')
 st.write(news_source_tweets)
 st.write("The values under the 'Average Objectivity Scores' (AOS) column are taken \
          from the average of the TextBlob and Vader  columns. \
          \n The data from AOS is used for the above chart, and calculating \
           the 'Mean Objectivity Score'.")
-# st.plotly_chart(plot_vdr_objectivity_scores())
-# ),
-# go.Scatter(
-#     x=news_source_tweets.index,
-#     y=news_source_tweets['Vader Objectivity Scores'],
-#     name='Vader Objectivity Scores',
-#     mode='lines',
-#     line=dict(color='#F08080')
-# ),
-# go.Scatter(
-#     x=news_source_tweets.index,
-#     y=news_source_tweets['Average Objectivity Scores'],
-#     name='Average Objectivity Scores',
-#     mode='lines',
-#     line=dict(color='black')
-# )
