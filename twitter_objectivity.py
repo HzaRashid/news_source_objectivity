@@ -1,11 +1,11 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from textblob import TextBlob as TB, Word
 import re
 import numpy as np
 import pandas as pd
 import tweepy as ty
-import nltk
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from nltk.corpus import stopwords
-from textblob import TextBlob as TB, Word
 import streamlit as st
 from plotly import graph_objs as go
 
@@ -24,15 +24,19 @@ api = ty.API(auth, wait_on_rate_limit=True)
 st.header('Objectivity of News Source \n From last 500 tweets')
 
 # map name of source to its twitter handle
-news_sources = {'New York Times': 'nytimes',
+news_sources = {'Reuters': 'Reuters',
+                'New York Times': 'nytimes',
                 'Wall Street Journal': 'WSJ',
-                'Fox News': 'FoxNews',
+                'The Associated Press': 'AP',
                 'CNN': 'CNN',
+                'NBC': 'NBCNews',
+                'Fox News': 'FoxNews',
                 'BBC': 'BBC',
                 'Al Jazeera': 'AJEnglish'}
 
 user_choice_source = st.selectbox('Select News Source', news_sources.keys())
-st.write('Objectivity Score ranges from 0% to 100%, from completely subjective to completely objective, respectively.')
+st.write('The Objectivity Score ranges from 0% to 100%, \
+         from Subjective to Objective, respectively.')
 twitter_handle = news_sources.get(user_choice_source)
 
 
@@ -157,9 +161,9 @@ avg_objectivity = np.mean(avg_objectivity_scores)
 st.subheader('Mean Objectivity Score: ' + str(round(avg_objectivity, 2)*100) + '%')
 st.subheader('Raw Data')
 st.write(news_source_tweets)
-st.write("The values under the 'Average Objectivity Scores' column are taken \
-         from the average of the TextBlob and Vader Objectivity Scores. \
-         \n The data in this column is used for the above chart, and calculating \
+st.write("The values under the 'Average Objectivity Scores' (AOS) column are taken \
+         from the average of the TextBlob and Vader  columns. \
+         \n The data from AOS is used for the above chart, and calculating \
           the 'Mean Objectivity Score'.")
 # st.plotly_chart(plot_vdr_objectivity_scores())
 # ),
