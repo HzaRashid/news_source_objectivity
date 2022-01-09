@@ -2,13 +2,12 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob as TB, Word
-import re
 import numpy as np
 import pandas as pd
 import tweepy as ty
 import streamlit as st
+import re
 from plotly import graph_objs as go
-
 
 twitter_info = pd.read_csv('keys_tokens.csv')
 
@@ -45,6 +44,7 @@ twitter_handle = news_sources.get(user_choice_source)
 def clean_tweet(text):
     nltk.download('wordnet')
     nltk.download('stopwords')
+    nltk.download('vader_lexicon')
     common_words = stopwords.words('english')
 
     tweet = text
