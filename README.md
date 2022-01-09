@@ -3,6 +3,8 @@
 
 To access tweets in real time, a [Twitter Developer](https://developer.twitter.com/en) account needs be made with an application for 'Elevated Access'. After which, four unique authorization credentials will be given; 'API Key', 'API Key Secret', 'Access Token', and 'Access Token Secret'. Authorizing these credentials using the tweepy library will give access to the Twitter API, which gives access to tweets.
 
+#### The visualization can be found [here](https://share.streamlit.io/hzarashid/news_source_objectivity/main/twitter_objectivity.py)
+
 #### In depth:
 - To measure the objectivity of a tweet, I used the TextBlob and Vader libraries, which process textual data. 
 - TextBlob provides a measure of polarity (feeling, not as relevant to this project), and more importantly, subjectivity. 
