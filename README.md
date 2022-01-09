@@ -1,5 +1,5 @@
 # news_source_objectivity
-#### Find a news source's twitter account, measure the objectivity of its last 500 tweets, and calculate the average objectivity of its last 500 tweets.
+#### Find a news source's twitter account, calculate the objectivity of each of its last 500 tweets, and calculate the average objectivity of those tweets.
 
 
 
