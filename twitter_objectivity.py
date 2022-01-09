@@ -45,10 +45,7 @@ twitter_handle = news_sources.get(user_choice_source)
 @st.cache(show_spinner=False)
 def clean_tweet(text):
     nltk.download('omw-1.4')
-    nltk.download('wordnet')
-    nltk.download('stopwords')
     nltk.download('vader_lexicon')
-    common_words = stopwords.words('english')
     tweet = text
     to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
 
