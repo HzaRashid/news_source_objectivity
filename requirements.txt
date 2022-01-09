@@ -1,6 +1,6 @@
 nltk
 textblob
-re
+regex
 numpy
 pandas
 tweepy
