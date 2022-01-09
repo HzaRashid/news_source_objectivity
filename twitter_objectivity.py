@@ -1,6 +1,5 @@
 import re
 import nltk
-from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob as TB, Word
 import numpy as np
