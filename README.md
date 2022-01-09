@@ -17,3 +17,5 @@
  
  - So both TextBlob and Vader's measure of objectivity and neutral emotion range between 0 and 1, respectively.
  - As a result, in this project, I calculated the objectivity of a tweet by taking the average of TextBlob's score of objectivity and Vader's score of neutral emotion.
+
+- Important to note: Both TextBlob and Vader are NOT completely accurate, the data in this project is meant to provide a rough estimate of objectivity.
