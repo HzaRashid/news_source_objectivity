@@ -10,6 +10,7 @@ import streamlit as st
 import re
 from plotly import graph_objs as go
 
+
 twitter_info = pd.read_csv('keys_tokens.csv')
 
 consumer_key = twitter_info['API Key'][0]
@@ -40,14 +41,13 @@ st.write('The Objectivity Score ranges from 0% to 100%, \
          from Subjective to Objective, respectively.')
 twitter_handle = news_sources.get(user_choice_source)
 
+nltk.download('wordnet')
+nltk.download('stopwords')
 nltk.downloader.download('vader_lexicon')
+common_words = stopwords.words('english')
 
 @st.cache
 def clean_tweet(text):
-    nltk.download('wordnet')
-    nltk.download('stopwords')
-
-    common_words = stopwords.words('english')
 
     tweet = text
     to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
