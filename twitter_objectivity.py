@@ -9,7 +9,7 @@ import tweepy as ty
 import streamlit as st
 from plotly import graph_objs as go
 
-
+# get twitter developer credentials
 twitter_info = pd.read_csv('keys_tokens.csv')
 
 consumer_key = twitter_info['API Key'][0]
@@ -17,6 +17,7 @@ consumer_secret = twitter_info['API Key Secret'][0]
 access_token = twitter_info['Access Token'][0]
 access_token_secret = twitter_info['Access Token Secret'][0]
 
+# authorize credentials to get access to Twitter API
 auth = ty.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = ty.API(auth, wait_on_rate_limit=True)
@@ -41,7 +42,7 @@ st.write('The Objectivity Score ranges from 0% to 100%, \
 twitter_handle = news_sources.get(user_choice_source)
 
 
-@st.cache
+@st.cache(show_spinner=False)
 def clean_tweet(text):
     nltk.download('omw-1.4')
     nltk.download('wordnet')
@@ -54,9 +55,6 @@ def clean_tweet(text):
     # remove @ mentions, RTs, hashtags ...
     for character_sequence in to_replace:
         tweet = re.sub(character_sequence, '', tweet)
-
-    # remove words that have no impact on sentiment measure
-    tweet = ' '.join(word for word in tweet.split() if word not in common_words)
 
     # turn words into most basic form
     tweet = ' '.join(Word(word).lemmatize() for word in tweet.split())
@@ -107,7 +105,7 @@ def get_tweets_data():
     # 0 means the tweet is completely subjective
     # 1 means the tweet is completely objective
     tweets['TextBlob Objectivity Scores'] = tb_scores
-    tweets['Vader Objectivity Scores'] = vdr_scores
+    tweets['Vader Neutrality Scores'] = vdr_scores
     tweets['Average Objectivity Scores'] = avg_scores
 
     return tweets
