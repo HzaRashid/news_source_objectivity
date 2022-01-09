@@ -1,8 +1,8 @@
+nltk
+textblob
 re
+numpy
 pandas
 tweepy
 streamlit
-nltk
-numpy
 plotly
-textblob
