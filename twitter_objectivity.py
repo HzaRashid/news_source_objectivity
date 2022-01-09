@@ -60,7 +60,7 @@ def clean_tweet(text):
 
 sia = SentimentIntensityAnalyzer()
 
-@st.cache(show_spinner=False)
+
 def objectivity_scores(tweet):
 
     textblob_objectivity = 1 - TB(tweet).sentiment.subjectivity
