@@ -9,7 +9,6 @@ import streamlit as st
 import re
 from plotly import graph_objs as go
 
-nltk.downloader.download('vader_lexicon')
 twitter_info = pd.read_csv('keys_tokens.csv')
 
 consumer_key = twitter_info['API Key'][0]
@@ -32,8 +31,8 @@ news_sources = {'Reuters': 'Reuters',
                 'NBC': 'NBCNews',
                 'Fox News': 'FoxNews',
                 'BBC': 'BBC',
-                'Al Jazeera (English)'
-                '': 'AJEnglish'}
+                'Al Jazeera (English)': 'AJEnglish'
+                }
 
 user_choice_source = st.selectbox('Select News Source', news_sources.keys())
 st.write('The Objectivity Score ranges from 0% to 100%, \
@@ -42,10 +41,11 @@ twitter_handle = news_sources.get(user_choice_source)
 
 
 
-@st.cache(show_spinner=False)
+@st.cache
 def clean_tweet(text):
     nltk.download('wordnet')
     nltk.download('stopwords')
+    nltk.downloader.download('vader_lexicon')
 
     common_words = stopwords.words('english')
 
@@ -121,7 +121,7 @@ load_data_state.text('')
 
 st.subheader('Tweet Data of ' + user_choice_source)
 
-@st.cache(show_spinner=False)
+
 def plot_objectivity_scores():
     fig = go.Figure([
         go.Scatter(
@@ -154,6 +154,6 @@ st.subheader('Mean Objectivity Score: ' + str(mean_objectivity*100)[:5] + '%')
 st.subheader('Raw Data')
 st.write(news_source_tweets)
 st.write("The values under the 'Average Objectivity Scores' (AOS) column are taken \
-         from the average of the TextBlob and Vader  columns. \
+         from the average of the TextBlob and Vader columns. \
          \n The data from AOS is used for the above chart, and calculating \
           the 'Mean Objectivity Score'.")
