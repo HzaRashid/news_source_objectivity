@@ -40,7 +40,7 @@ user_choice_source = st.selectbox('Select News Source', news_sources.keys())
 st.write('The Objectivity Score ranges from 0% to 100%, \
          from Subjective to Objective, respectively.')
 twitter_handle = news_sources.get(user_choice_source)
-
+nltk.download('omw-1.4')
 nltk.download('wordnet')
 nltk.download('stopwords')
 nltk.downloader.download('vader_lexicon')
