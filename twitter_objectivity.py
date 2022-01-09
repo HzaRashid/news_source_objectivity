@@ -1,5 +1,4 @@
 import nltk
-import nltk.downloader
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob as TB, Word
@@ -43,7 +42,7 @@ twitter_handle = news_sources.get(user_choice_source)
 nltk.download('omw-1.4')
 nltk.download('wordnet')
 nltk.download('stopwords')
-nltk.downloader.download('vader_lexicon')
+nltk.download('vader_lexicon')
 common_words = stopwords.words('english')
 
 @st.cache
@@ -156,6 +155,4 @@ st.write("The values under the 'Average Objectivity Scores' (AOS) column are tak
          from the average of the TextBlob and Vader columns. \
          \n The data from AOS is used for the above chart, and calculating \
           the 'Mean Objectivity Score'.")
-
-
 
