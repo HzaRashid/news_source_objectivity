@@ -8,7 +8,7 @@
 
 
 
-#### In depth:
+### In depth:
 ##### [twitter_objectivity.ipynb](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.ipynb) is where most of the rough the work was done, to learn how to gather the tweets and 'clean' them (i.e., remove @ mentions, hashtags). The code on which the visualization runs is located in  [twitter_objectivity.py](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.py)
 
 
