@@ -1,13 +1,14 @@
 import re
+import numpy as np
 import pandas as pd
 import tweepy as ty
-import streamlit as st
 import nltk
-import numpy as np
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.corpus import stopwords
 from textblob import TextBlob as TB, Word
+import streamlit as st
 from plotly import graph_objs as go
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 
 twitter_info = pd.read_csv('keys_tokens.csv')
 
@@ -44,7 +45,7 @@ def clean_tweet(text):
     tweet = text
     to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
 
-    # remove keyword, @ mentions, RTs, ...
+    # remove @ mentions, RTs, hashtags ...
     for character_sequence in to_replace:
         tweet = re.sub(character_sequence, '', tweet)
 
