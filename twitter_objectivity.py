@@ -10,6 +10,7 @@ from plotly import graph_objs as go
 
 nltk.download('omw-1.4')
 nltk.download('vader_lexicon')
+nltk.download('wordnet')
 # get twitter developer credentials
 twitter_info = pd.read_csv('keys_tokens.csv')
 
