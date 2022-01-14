@@ -41,14 +41,15 @@ st.write('The Objectivity Score ranges from 0% to 100%, \
          from Subjective to Objective, respectively.')
 twitter_handle = news_sources.get(user_choice_source)
 
+# download necessary files to use nltk, textblob, and vader
+nltk.download('omw-1.4')
+nltk.download('wordnet')
+nltk.download('vader_lexicon')
+
 
 @st.cache(show_spinner=False)
 def clean_tweet(text):
-    # download necessary files to use nltk, textblob, and vader
-    nltk.download('omw-1.4')
-    nltk.download('wordnet')
-    nltk.download('vader_lexicon')
-    
+
     tweet = text
     to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
 
