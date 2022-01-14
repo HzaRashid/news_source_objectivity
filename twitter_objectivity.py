@@ -151,3 +151,7 @@ st.write("The values under the 'Average Objectivity Scores' (AOS) column are tak
          \n The data from AOS is used for the above chart, and calculating \
           the 'Mean Objectivity Score'.")
 
+if __name__ == '__main__':
+    twitter_handle='Reuters'
+    data = get_tweets_data()
+    print(data)
