@@ -8,9 +8,7 @@ import tweepy as ty
 import streamlit as st
 from plotly import graph_objs as go
 
-nltk.download('omw-1.4')
-nltk.download('vader_lexicon')
-nltk.download('wordnet')
+
 # get twitter developer credentials
 twitter_info = pd.read_csv('keys_tokens.csv')
 
@@ -46,6 +44,11 @@ twitter_handle = news_sources.get(user_choice_source)
 
 @st.cache(show_spinner=False)
 def clean_tweet(text):
+    # download necessary files to use nltk, textblob, and vader
+    nltk.download('omw-1.4')
+    nltk.download('wordnet')
+    nltk.download('vader_lexicon')
+    
     tweet = text
     to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
 
@@ -65,10 +68,10 @@ sia = SentimentIntensityAnalyzer()
 def objectivity_scores(tweet):
 
     textblob_objectivity = 1 - TB(tweet).sentiment.subjectivity
-    vader_objectivity = sia.polarity_scores(tweet).get('neu')
-    avg_objectivity = (textblob_objectivity + vader_objectivity) / 2
+    vader_neutrality = sia.polarity_scores(tweet).get('neu')
+    avg_objectivity = (textblob_objectivity + vader_neutrality) / 2
 
-    return textblob_objectivity, vader_objectivity, avg_objectivity
+    return textblob_objectivity, vader_neutrality, avg_objectivity
 
 
 @st.cache(show_spinner=False, allow_output_mutation=True)
