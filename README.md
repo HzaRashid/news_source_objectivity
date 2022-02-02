@@ -3,7 +3,7 @@
 
 
 
-#### currently updating visualization
+#### The visualization can be found [here](https://share.streamlit.io/hzarashid/news_source_objectivity/main/twitter_objectivity.py) 
 
 
 
@@ -23,3 +23,4 @@ To access tweets directly from Twitter, a [Twitter Developer](https://developer.
  - As a result, in this project, I calculated the objectivity of a tweet by taking the average of TextBlob's score of objectivity and Vader's score of neutral emotion.
 
 - Important to note: neither TextBlob nor Vader are completely accurate – the data in this project is meant to provide a rough estimate of objectivity.
+- Also, the table of raw data might include tweets that appear empty. This is likely because the tweet only contains emojis.
