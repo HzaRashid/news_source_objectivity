@@ -32,7 +32,7 @@ news_sources = {'Reuters': 'Reuters',
                 'CNN': 'CNN',
                 'NBC': 'NBCNews',
                 'Fox News': 'FoxNews',
-                'BBC': 'BBC',
+                'BBC': 'BBCBreaking',
                 'Al Jazeera (English)': 'AJEnglish'
                 }
 
