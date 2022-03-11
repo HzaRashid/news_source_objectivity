@@ -2,7 +2,7 @@
 #### Find a news source's twitter account, calculate the objectivity of each of its last 500 tweets, and calculate the average objectivity of those tweets.
 
 
-#### The visualization is currently being updated
+#### The visualization is [here](https://share.streamlit.io/hzarashid/news_source_objectivity/main/twitter_objectivity.py)
 
 ### In depth:
 [twitter_objectivity.ipynb](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.ipynb) is where most of the rough the work was done, to learn how to gather the tweets and process them (i.e., remove @ mentions, hashtags). The code on which the visualization runs is located in  [twitter_objectivity.py](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.py)
@@ -17,6 +17,6 @@ To access tweets directly from Twitter, a [Twitter Developer](https://developer.
  - Vader provides a measure of positivity, negativity, and neutrality of a piece of text, as well as a normalized sum of those metrics, called the 'Compound score'.  The metric relevant to this project is the Neutral emotion Score, which is expressed as a percentage, with 0 indicating a completely emotional piece of text, and 1 indicating the opposite. 
  
  - So both TextBlob and Vader's measure of objectivity and neutral emotion range between 0 and 1, respectively.
- - As a result, in this project, I calculated the objectivity of a tweet by taking the average of TextBlob's score of objectivity and Vader's score of neutral emotion.
+ - As a result, in this project, I calculate the objectivity of a tweet by taking the average of TextBlob's score of objectivity and Vader's score of neutral emotion.
 
 - Important to note: neither TextBlob nor Vader are completely accurate – the data in this project is meant to provide a rough estimate of objectivity.
