@@ -2,10 +2,7 @@
 #### Find a news source's twitter account, calculate the objectivity of each of its last 500 tweets, and calculate the average objectivity of those tweets.
 
 
-
-#### The visualization can be found [here](https://share.streamlit.io/hzarashid/news_source_objectivity/main/twitter_objectivity.py)
-
-
+#### The visualization is currently being updated
 
 ### In depth:
 [twitter_objectivity.ipynb](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.ipynb) is where most of the rough the work was done, to learn how to gather the tweets and process them (i.e., remove @ mentions, hashtags). The code on which the visualization runs is located in  [twitter_objectivity.py](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.py)
