@@ -54,10 +54,9 @@ def clean_tweet(text):
     to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
 
     # remove @ mentions, RTs, hashtags ...
-    for character_sequence in to_replace:
-        tweet = re.sub(character_sequence, '', tweet)
+    for string in to_replace:
+        tweet = re.sub(string, '', tweet)
 
-    tweet = re.sub('-', ' ', tweet)
     return tweet
 
 
