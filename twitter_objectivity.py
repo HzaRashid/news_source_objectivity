@@ -51,11 +51,11 @@ nltk.download('vader_lexicon')
 def clean_tweet(text):
 
     tweet = text
-    to_replace = ['@[\w]+', 'RT[\s]+', '#', 'http[\w]+', '[^\w\s]']
+    to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
 
     # remove @ mentions, RTs, hashtags ...
-    for string in to_replace:
-        tweet = re.sub(string, '', tweet)
+    for character_sequence in to_replace:
+        tweet = re.sub(character_sequence, '', tweet)
 
     # turn words into most basic form
     # tweet = ' '.join(Word(word).lemmatize() for word in tweet.split())
