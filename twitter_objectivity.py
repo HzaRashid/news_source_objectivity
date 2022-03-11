@@ -51,8 +51,8 @@ nltk.download('vader_lexicon')
 def clean_tweet(text):
 
     tweet = text
-    to_replace = ['@[\w]+', 'RT[\s]+', '[^\s\w]', '#', 'http[\w]+']
-
+    to_replace = ['@[\w]+', 'RT[\s]+', r'http\S+', '#', 'http[\w]+']
+    # '[^\s\w]'
     # remove @ mentions, RTs, hashtags ...
     for string in to_replace:
         tweet = re.sub(string, '', tweet)
