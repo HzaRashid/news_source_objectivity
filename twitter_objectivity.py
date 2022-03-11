@@ -47,7 +47,7 @@ nltk.download('wordnet')
 nltk.download('vader_lexicon')
 
 
-@st.cache(show_spinner=False)
+# @st.cache(show_spinner=False)
 def clean_tweet(text):
 
     tweet = text
