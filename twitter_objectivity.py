@@ -57,9 +57,7 @@ def clean_tweet(text):
     for character_sequence in to_replace:
         tweet = re.sub(character_sequence, '', tweet)
 
-    # turn words into most basic form
-    # tweet = ' '.join(Word(word).lemmatize() for word in tweet.split())
-
+    tweet = re.sub('-', ' ', tweet)
     return tweet
 
 
