@@ -24,7 +24,7 @@ api = ty.API(auth, wait_on_rate_limit=True)
 
 st.header('Objectivity of News Source')
 st.subheader('From last 500 tweets')
-# \n From last 500 tweets'
+
 # map name of source to its twitter handle
 news_sources = {'Reuters': 'Reuters',
                 'New York Times': 'nytimes',
