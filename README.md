@@ -6,8 +6,6 @@
 ### In depth:
 The code on which the visualization runs is located in  [twitter_objectivity.py](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.py)
 
-To access tweets directly from Twitter, a [Twitter Developer](https://developer.twitter.com/en) account needs be made with an application for 'Elevated Access'. After which, four unique authorization credentials will be given; 'API Key', 'API Key Secret', 'Access Token', and 'Access Token Secret'. Authorizing these credentials using the tweepy library will give access to the Twitter API, which gives access to tweets.
-
 #### To measure the objectivity of a tweet, I used the [TextBlob and Vader libraries](https://towardsdatascience.com/sentiment-analysis-vader-or-textblob-ff25514ac540), which process textual data. 
 
 - TextBlob provides a measure of polarity (i.e., tone, feeling), and subjectivity. 
