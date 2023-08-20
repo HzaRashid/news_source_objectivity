@@ -2,12 +2,12 @@
 #### Find a news source's twitter account, calculate the objectivity of each of its last 500 tweets, and calculate the average objectivity of those tweets.
 
 ### update:
-#### Due to an update to Twitter's Developer API made earlier this year, those with free access (including myself) are no longer able to query tweets. So this project is no longer working. 
+#### Due to an update to Twitter's Developer API made earlier this year, those with free access (including myself) are no longer able to query tweets. So the visualization component of this project is no longer available. 
 #### for more details: [see here](https://twittercommunity.com/t/understanding-the-error-453-you-currently-have-access-to-a-subset-of-twitter-api-v2-endpoints/200361) and [here](https://twittercommunity.com/t/understanding-the-error-453-you-currently-have-access-to-a-subset-of-twitter-api-v2-endpoints/200361)
 
-#### The visualization is [here](https://share.streamlit.io/hzarashid/news_source_objectivity/main/twitter_objectivity.py)
+
 ### In depth:
-The code on which the visualization runs is located in  [twitter_objectivity.py](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.py)
+If still interested, The code on which the visualization used to run is located in  [twitter_objectivity.py](https://github.com/HzaRashid/news_source_objectivity/blob/main/twitter_objectivity.py)
 
 #### To measure the objectivity of a tweet, I used the [TextBlob and Vader libraries](https://towardsdatascience.com/sentiment-analysis-vader-or-textblob-ff25514ac540), which process textual data. 
 
