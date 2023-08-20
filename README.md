@@ -1,6 +1,9 @@
 # news_source_objectivity
 #### Find a news source's twitter account, calculate the objectivity of each of its last 500 tweets, and calculate the average objectivity of those tweets.
 
+### update:
+#### Due to an update to Twitter's Developer API made earlier this year, those with free access (including myself) are no longer able to query tweets. So this project is no longer working. 
+#### for more details: [see here](https://twittercommunity.com/t/understanding-the-error-453-you-currently-have-access-to-a-subset-of-twitter-api-v2-endpoints/200361) and [here](https://twittercommunity.com/t/understanding-the-error-453-you-currently-have-access-to-a-subset-of-twitter-api-v2-endpoints/200361)
 
 #### The visualization is [here](https://share.streamlit.io/hzarashid/news_source_objectivity/main/twitter_objectivity.py)
 ### In depth:
