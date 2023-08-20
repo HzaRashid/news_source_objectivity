@@ -3,7 +3,7 @@
 
 ### update:
 #### Due to an update to Twitter's Developer API made earlier this year, those with free access (including myself) are no longer able to query tweets. So the visualization component of this project is no longer available. 
-#### for more details: [see here](https://twittercommunity.com/t/understanding-the-error-453-you-currently-have-access-to-a-subset-of-twitter-api-v2-endpoints/200361) and [here](https://twittercommunity.com/t/understanding-the-error-453-you-currently-have-access-to-a-subset-of-twitter-api-v2-endpoints/200361)
+#### for more details: [see here](https://twittercommunity.com/t/understanding-the-error-453-you-currently-have-access-to-a-subset-of-twitter-api-v2-endpoints/200361) and [here](https://developer.twitter.com/en/docs/twitter-api/getting-started/about-twitter-api#v2-access-leve)
 
 
 ### In depth:
